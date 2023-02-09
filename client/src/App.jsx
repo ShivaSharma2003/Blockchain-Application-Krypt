@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import {
   Loader,
   Navbar,
@@ -9,15 +9,34 @@ import {
 } from "./Components/index";
 import { TransactionContext } from "./Context/TransactionContext";
 
-function App() {
-  const {} = useContext(TransactionContext);
-  
+const App = () => {
+  const {
+    connectWallet,
+    CurrentAccount,
+    StructuredTransactions,
+    TransactionsCount,
+  } = useContext(TransactionContext);
+
+  const ConnectWalletHandle = (e) => {
+    e.preventDefault();
+    connectWallet();
+  };
+
+  useEffect(() => {
+    console.log(CurrentAccount);
+  }, [CurrentAccount]);
+
   return (
     <>
       <div className="w-full h-[100vh] flex items-center justify-center gap-10">
         <div className="w-[30rem]">
           <h2>Connect to Your Wallet</h2>
-          <button className="border py-2 block w-full ">Connect Wallet</button>
+          <button
+            className="border py-2 block w-full "
+            onClick={ConnectWalletHandle}
+          >
+            Connect Wallet
+          </button>
         </div>
         <form className="flex flex-col gap-4">
           <input type="text" name="address" placeholder="address" />
@@ -33,6 +52,6 @@ function App() {
       </div>
     </>
   );
-}
+};
 
 export default App;

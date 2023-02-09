@@ -5,9 +5,7 @@ import './index.css'
 import {TransactionProvider} from './Context/TransactionContext'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
     <TransactionProvider>
     <App />
     </TransactionProvider>
-  </React.StrictMode>,
 )
